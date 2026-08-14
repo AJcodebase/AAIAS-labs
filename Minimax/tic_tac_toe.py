@@ -1,5 +1,3 @@
-print("hello from tic-tac-toe")
-
 X = "X"
 O = "O"
 EMPTY = None
@@ -24,3 +22,24 @@ def player(board):
         return X
     else:
         return O
+
+
+def actions(board):
+    moves = set()
+    for i in range(3):
+        for j in range(3):
+            if board[i][j] == EMPTY:
+                moves.add((i, j))
+    return moves
+
+
+
+def result(board, action):
+    i, j = action
+    if board[i][j] != EMPTY:
+        raise Exception("Invalid action")
+    new_board = [row[:] for row in board]
+    new_board[i][j] = player(board)
+    return new_board
+
+def winner(board):
